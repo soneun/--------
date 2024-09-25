@@ -1,0 +1,221 @@
+/*초기화*/
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
+}
+
+body {
+  /*색은 black(특정 색), #000000 검은색 #FFFFFF 흰색*/
+  background: black;
+}
+
+/* 가상의 박스를 만듦*/
+body::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  /*투명도*/
+  opacity: 0.5;
+  width: 100%;
+  height: 100%;
+  background: url("hero.jpg");
+  background-position: center;
+}
+
+/*좌 상단의 넷플릭스 로고*/
+nav {
+  /*고정좌표 fixed 포지션*/
+  position: fixed;
+  padding: 25px 60px;
+  /*z-index는 태그가 겹쳤을 때, 클수록 위로 올라옴*/
+  z-index: 1;
+}
+
+nav a img {
+  width: 167px;
+}
+
+/*가운데 폼 입력창*/
+.form-wrapper {
+  /*이 창을 가운데로 자체적으로 정렬*/
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+
+  border-radius: 4px;
+  padding: 70px;
+  width: 450px;
+  background: rgba(0, 0, 0, 0.75);
+}
+
+/*폼 안의 로그인*/
+.form-wrapper h2 {
+  color: white;
+  font-size: 2rem;
+}
+
+.form-wrapper form {
+  margin: 25px 0 65px;
+}
+
+/*입력창을 css*/
+form .form-control {
+  height: 50px;
+  position: relative;
+  margin-bottom: 16px;
+}
+
+.form-control input {
+  height: 100%;
+  width: 100%;
+  background: #333;
+  border: none;
+  outline: none;
+  border-radius: 4px;
+  color: #fff;
+  font-size: 1rem;
+  padding: 0 20px;
+}
+
+.form-control input:is(:focus, :valid) {
+  background: #444;
+  padding: 16px 20px 0;
+}
+
+/*입력의 제목(라벨)을 포지션 절대좌표로 입력안에 이동*/
+.form-control label {
+  position: absolute;
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1rem;
+  pointer-events: none;
+  color: #8c8c8c;
+  transition: all 0.1s ease;
+}
+
+/*입력을 선택(:focus) 또는 입력(:valid)하고 있을 떄 폰트를 작게하고 위로 이동*/
+.form-control input:is(:focus, :valid) ~ label {
+  font-size: 0.75rem;
+  transform: translateY(-130%);
+}
+
+form button {
+  width: 100%;
+  padding: 16px 0;
+  font-size: 1rem;
+  background: #e50914;
+  color: #fff;
+  font-weight: 500;
+  border-radius: 4px;
+  border: none;
+  outline: none;
+  margin: 25px 0 10px;
+  cursor: pointer;
+  transition: 0.1s ease;
+}
+
+/* :hover는 마우스를 위에 올렸을 떄 */
+form button:hover {
+  background: #c40812;
+  transform: scale(0.98);
+}
+
+/* 태그 링크의 밑줄 없애기 */
+.form-wrapper a {
+  text-decoration: none;
+}
+
+/* 태그에 마우스 올리면 밑줄 생기게*/
+.form-wrapper a:hover {
+  text-decoration: underline;
+}
+
+/* 제목, p태그, small태그, a태그 색을 지정*/
+.form-wrapper :where(label, p, small, a) {
+  color: #b3b3b3;
+}
+
+form .form-help {
+  display: flex;
+  justify-content: space-between;
+}
+
+form .remember-me {
+  display: flex;
+}
+form .remember-me input {
+  margin-right: 5px;
+  accent-color: #b3b3b3;
+}
+form .form-help :where(label, a) {
+  font-size: 0.9rem;
+}
+
+.form-wrapper p a {
+  color: #fff;
+}
+
+.form-wrapper small {
+  display: block;
+  margin-top: 15px;
+  color: #b3b3b3;
+}
+
+.form-wrapper small a {
+  color: #0071eb;
+}
+.form-wrapper :where(label, p, small, a) {
+  color: #b3b3b3;
+}
+
+form .form-help {
+  display: flex;
+  justify-content: space-between;
+}
+
+form .remember-me {
+  display: flex;
+}
+
+form .remember-me input {
+  margin-right: 5px;
+  accent-color: #b3b3b3;
+}
+
+form .form-help :where(label, a) {
+  font-size: 0.9rem;
+}
+
+/* 미디어쿼리를 사용해서 반응형 사이트를 만듦*/
+/* 미디어쿼리 사용시 head태그에 */
+/* 미디어(변하는 가로사이즈)*/
+@media (max-width: 400px) {
+  body::before {
+    /*백그라운드 이미지 삭제*/
+    display: none;
+  }
+
+  nav,
+  .form-wrapper {
+    padding: 20px;
+  }
+
+  nav a img {
+    width: 140px;
+  }
+
+  .form-wrapper {
+    width: 100%;
+    top: 43%;
+  }
+
+  .form-wrapper form {
+    margin: 25px 0 40px;
+  }
+}
